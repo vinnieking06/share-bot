@@ -1,5 +1,15 @@
 const request = require('request');
 var jsdom = require("jsdom/lib/old-api.js");
+const express = require('express');
+
+const app = express();
+
+app.use(express.static(__dirname));
+
+app.get('/start', (req, res) => {
+  delayScrapeAndShare();
+  res.end('it has begun');
+})
 
 var scrapeHeader = {
     'if-none-match': '"04abef409479f5239328990f8eb44115"',
@@ -56,7 +66,7 @@ function delayScrapeAndShare() {
   setInterval(scrapeAndShare, 1320000 )
 }
 
-delayScrapeAndShare();
+//delayScrapeAndShare();
 
 function scrapeAndShare() {
   jsdom.env( {
@@ -90,3 +100,4 @@ function share(id) {
   return request(options, callback)
 }
 
+app.listen(process.env.PORT || 5000);
