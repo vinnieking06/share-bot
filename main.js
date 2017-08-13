@@ -13,7 +13,7 @@ app.get('/start', (req, res) => {
 })
 
 function randomNumTo25() {
-  return Math.floor((Math.random() * 25000) + 1);
+  return Math.floor((Math.random() * 35000) + 1);
 }
 
 function delay(t){
@@ -37,7 +37,7 @@ async function delayShare(arr) {
 function delayScrapeAndShare() {
   console.log('initiating');
   scrapeAndShare();
-  setInterval(scrapeAndShare, 1320000 )
+  setInterval(scrapeAndShare, 1560000 )
 }
 
 function scrapeAndShare() {
