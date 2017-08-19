@@ -1,12 +1,13 @@
 const request = require('request');
 var jsdom = require("jsdom/lib/old-api.js");
+var _ = require('lodash');
 const express = require('express');
 const headers = require('./private');
 const fs = require('fs');
-const idData = require('./data');
+const newData = require('./data');
 
 let users = [];
-let userLovers = {};
+let userLovers = [];
 let test = ['rosy126', 'sneedsi', 'mdoucette1'];
 let promises = [];
 
@@ -28,11 +29,13 @@ function getUsers() {
       for (let i = 0; i < elems.length; i++) {
         users.push(elems[i].innerHTML);
       }
-      console.log(users);
       getLoversFromUsers(users);
     }
   })
 }
+
+// this call scrapes
+ //getUsers();
 
   function checkLovePagePromise(user) {
     return new Promise ((resolve, reject) => {
@@ -53,7 +56,9 @@ function getUsers() {
               lovers.push(grabId(loveId))
             }
           }
-          userLovers[user] = lovers;
+          lovers = _.uniq(lovers);
+          console.log(lovers)
+          userLovers.push(...lovers);
           resolve();
         }
       })
@@ -65,12 +70,16 @@ function getUsers() {
 
  
 function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
+  if (error) {
+    console.log(error);
+  } 
+  if (!error && response.statusCode == 200) {
         console.log(body);
     }
 }
 
 function follow(id) {
+  console.log('id', id);
   let options = {
     url: `https://poshmark.com/user/${id}/follow_user`,
     method: 'POST',
@@ -98,4 +107,13 @@ function grabId(str) {
 
   }
   return id.join('')
+}
+
+
+  newData.forEach(item => {
+    follow(item);
+  })
+
+  module.exports = {
+  grabId: grabId
 }
