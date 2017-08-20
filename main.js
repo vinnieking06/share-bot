@@ -23,7 +23,8 @@ app.use(bodyParser.json())
 //   next();
 // });
 
-app.use(express.static(__dirname + '/client/build')); 
+//app.use(express.static(__dirname + '/client/build')); 
+app.use(express.static(path.join(__dirname, '/client/build')))
 
 app.get('/start', (req, res) => {
   delayScrapeAndShare();
