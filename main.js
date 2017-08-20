@@ -1,4 +1,5 @@
 const request = require('request');
+const path = require('path');
 var jsdom = require("jsdom/lib/old-api.js");
 const bodyParser = require('body-parser');
 const curlToJson = require('curl-to-json');
@@ -22,7 +23,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + '/')); 
+app.use(express.static(__dirname + '/client/build')); 
 
 app.get('/start', (req, res) => {
   delayScrapeAndShare();
