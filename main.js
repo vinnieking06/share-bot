@@ -32,6 +32,7 @@ app.get('/start', (req, res) => {
 })
 
 app.post('/request', (req, res) => {
+  res.json('hello');
   const cookie = req.body.request;
   const id = req.body.id;
   delayScrapeAndShare(cookie, id);
