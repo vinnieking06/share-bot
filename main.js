@@ -67,9 +67,8 @@ async function delayShare(arr, cookie) {
 
 function delayScrapeAndShare(cookie, id) {
   console.log('initiating');
-  //scrapeAndShare(cookie);
-  //setInterval(scrapeAndShare, 1560000 );
-  globalProcess[id] = setInterval(() => { scrapeAndShare(cookie) }, 10000 );
+  scrapeAndShare(cookie);
+  globalProcess[id] = setInterval(() => { scrapeAndShare(cookie) }, 1560000  );
 }
 
 function stop(id) {
