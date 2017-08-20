@@ -1,8 +1,7 @@
 import React from 'react';
 import  Auth  from './Auth/Auth.js';
 import axios from 'axios';
-const baseUrl = 'https://cryptic-everglades-20750.herokuapp.com/';
-
+//const baseUrl = 'https://cryptic-everglades-20750.herokuapp.com/';
 
 export default class Account extends React.Component {
   constructor(props) {
@@ -16,14 +15,14 @@ export default class Account extends React.Component {
   }
 
   handleClick = () => {
-    axios.post(`${baseUrl}/request`, { request: this.state.input, id: this.state.user })
+    axios.post('/request', { request: this.state.input, id: this.state.user })
       .then((data) => {
         console.log(data.data);
       })
   }
   
   stop = () => {
-    axios.post(`${baseUrl}/stop`, { id: this.state.user })
+    axios.post('/stop', { id: this.state.user })
       .then((data) => {
         console.log(data.data);
       })

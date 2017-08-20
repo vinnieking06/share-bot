@@ -11,7 +11,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'vinnieking06.auth0.com',
     clientID: '5A0B7LQXAXQPB_76_ta7M5xw5_chBhaP',
-    redirectUri: 'https://cryptic-everglades-20750.herokuapp.com/account',
+    redirectUri: 'https://sleepy-spire-63501.herokuapp.com/account',
     audience: 'https://vinnieking06.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
