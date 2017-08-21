@@ -8,12 +8,9 @@ const express = require('express');
 const headerService = require('./create-header');
 const headers = require('./private');
 
-const globalProcess = {};
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }))
-
 
 app.use(bodyParser.json())
 
@@ -23,13 +20,9 @@ app.use(bodyParser.json())
 //   next();
 // });
 
-//app.use(express.static(__dirname + '/client/build')); 
 app.use(express.static(path.join(__dirname, '/client/build')))
 
-app.get('/start', (req, res) => {
-  delayScrapeAndShare();
-  res.end('it has begun');
-})
+const globalProcess = {};
 
 app.post('/request', (req, res) => {
   res.json('hello');
@@ -42,6 +35,9 @@ app.post('/stop', (req, res) => {
   stop(req.body.id);
 })
 
+app.get('*', (req, res) => {
+  res.sendFile(`${__dirname}/client/build/index.html`);
+});
 function randomNumTo25() {
   return Math.floor((Math.random() * 35000) + 1);
 
@@ -76,7 +72,7 @@ function stop(id) {
 }
 
 function scrapeAndShare(cookie) {
-  request('https://cryptic-everglades-20750.herokuapp.com/', callback);
+  request('https://sleepy-spire-63501.herokuapp.com/', callback);
   jsdom.env( {
     url:"https://poshmark.com/feed",
     headers: headerService.createScrapeHeaders(cookie),

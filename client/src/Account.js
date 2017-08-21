@@ -1,7 +1,6 @@
 import React from 'react';
 import  Auth  from './Auth/Auth.js';
 import axios from 'axios';
-//const baseUrl = 'https://cryptic-everglades-20750.herokuapp.com/';
 
 export default class Account extends React.Component {
   constructor(props) {

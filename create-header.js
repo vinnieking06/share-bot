@@ -29,11 +29,11 @@ function callback(error, response, body) {
 request(options, callback);`
 
 function cookieGrabber(str) {
-  let poop = str.split(`cookie:`)
-  let poop2 = poop[1];
-  let poop3 = poop2.split('--compressed');
-  let poop4 = poop3[0];
-  let arr = poop4.split('');
+  let curl = str.split(`cookie:`)
+  let curl2 = curl[1];
+  let curl3 = curl2.split('--compressed');
+  let curl4 = curl3[0];
+  let arr = curl4.split('');
   arr.shift();
   arr.pop();
   arr.pop();
